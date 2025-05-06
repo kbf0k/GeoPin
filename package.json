@@ -15,7 +15,10 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "dependencies": {
     "@expo-google-fonts/poppins": "^0.3.1",
@@ -114,6 +117,7 @@
     "exec-async": "^2.2.0",
     "expo": "^53.0.7",
     "expo-asset": "^11.1.5",
+    "expo-blur": "~14.1.4",
     "expo-constants": "^17.1.5",
     "expo-file-system": "^18.1.9",
     "expo-font": "^13.3.1",
@@ -188,6 +192,7 @@
     "json5": "^2.2.3",
     "kleur": "^3.0.3",
     "lan-network": "^0.1.5",
+    "leaflet": "^1.9.4",
     "leven": "^3.1.0",
     "lighthouse-logger": "^1.4.2",
     "lightningcss": "^1.27.0",
@@ -280,10 +285,12 @@
     "react-devtools-core": "^6.1.1",
     "react-dom": "19.0.0",
     "react-is": "^18.3.1",
+    "react-leaflet": "^5.0.0",
     "react-native": "^0.79.2",
     "react-native-awesome-alerts": "^2.0.0",
     "react-native-edge-to-edge": "^1.6.0",
     "react-native-is-edge-to-edge": "^1.1.7",
+    "react-native-maps": "^1.23.7",
     "react-native-web": "^0.20.0",
     "react-refresh": "^0.14.2",
     "regenerate": "^1.4.2",
@@ -383,7 +390,6 @@
     "yallist": "^3.1.1",
     "yargs": "^17.7.2",
     "yargs-parser": "^21.1.1",
-    "yocto-queue": "^0.1.0",
-    "expo-blur": "~14.1.4"
+    "yocto-queue": "^0.1.0"
   }
 }

@@ -1,20 +1,59 @@
-import React from 'react';
-import { View, Text, StyleSheet, Pressable, Dimensions } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import React, { useEffect, useState } from 'react';
+import { View, TextInput, Pressable, Text, StyleSheet, Dimensions } from 'react-native';
+import * as Location from 'expo-location';
+import MapView, { Marker } from 'react-native-maps';
 
-export default function Inicio({ navigation }) {
+export default function HomeScreen({ navigation }) {
+    const [location, setLocation] = useState(null);
+    const [destination, setDestination] = useState('');
+
+    useEffect(() => {
+        (async () => {
+            const { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== 'granted') {
+                console.log('Permissão de localização negada');
+                return;
+            }
+
+            const loc = await Location.getCurrentPositionAsync({});
+            setLocation(loc.coords);
+        })();
+    }, []);
+
+    const handleNavigate = () => {
+        if (!destination || !location) return;
+        navigation.navigate('RoutesScreen', {
+            destination,
+            origin: location,
+        });
+    };
+
     return (
         <View style={styles.container}>
+            <TextInput
+                style={styles.input}
+                placeholder="Digite o destino"
+                value={destination}
+                onChangeText={setDestination}
+            />
 
-            {/* Local onde o mapa será renderizado futuramente */}
-            <View style={styles.mapPlaceholder}>
-                <Text style={styles.mapText}>[ MAPA AQUI ]</Text>
-            </View>
-
-            {/* Botão de ação */}
-            <Pressable style={styles.button} onPress={() => navigation.navigate('UltimoDestino')}>
-                <Text style={styles.buttonText}>Ver Último Destino</Text>
+            <Pressable style={styles.button} onPress={handleNavigate}>
+                <Text style={styles.buttonText}>Ir para rota</Text>
             </Pressable>
+
+            {location && (
+                <MapView
+                    style={styles.map}
+                    initialRegion={{
+                        latitude: location.latitude,
+                        longitude: location.longitude,
+                        latitudeDelta: 0.01,
+                        longitudeDelta: 0.01,
+                    }}
+                >
+                    <Marker coordinate={location} title="Você está aqui" />
+                </MapView>
+            )}
         </View>
     );
 }
@@ -23,46 +62,34 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F5F5F5',
+        padding: 16,
     },
-    header: {
-        paddingVertical: 50,
-        paddingHorizontal: 25,
-        borderBottomLeftRadius: 30,
-        borderBottomRightRadius: 30,
-        alignItems: 'center',
-    },
-    headerText: {
-        fontSize: 28,
-        color: 'white',
-        fontWeight: 'bold',
-    },
-    mapPlaceholder: {
-        width: Dimensions.get('window').width * 0.9,
-        height: 300,
-        backgroundColor: '#E0E0E0',
-        borderRadius: 20,
-        alignSelf: 'center',
-        marginTop: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
+    input: {
         borderWidth: 1,
-        borderColor: '#1289E7',
-    },
-    mapText: {
-        color: '#888',
-        fontSize: 16,
+        borderColor: '#ccc',
+        borderRadius: 8,
+        padding: 12,
+        marginBottom: 10,
+        backgroundColor: '#fff',
     },
     button: {
         backgroundColor: '#2DAF69',
         padding: 15,
-        paddingHorizontal: 40,
         borderRadius: 25,
-        alignSelf: 'center',
-        marginTop: 40,
+        alignItems: 'center',
+        marginBottom: 20,
     },
     buttonText: {
         color: 'white',
         fontWeight: 'bold',
         fontSize: 16,
+    },
+    map: {
+        width: Dimensions.get('window').width * 0.9,
+        height: 300,
+        alignSelf: 'center',
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#1289E7',
     },
 });

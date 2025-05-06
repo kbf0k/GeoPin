@@ -1,13 +1,24 @@
 import React from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Perfil({ navigation }) {
     return (
         <View style={styles.container}>
-            <Text style={styles.text_titulo}>Perfil</Text>
 
-            <Pressable style={styles.button} onPress={() => navigation.navigate('Grace Hopper')}>
-                <Text style={styles.buttonText}>Saiba Mais</Text>
+            {/* Card do Perfil */}
+            <View style={styles.card}>
+                <Image
+                    source={require('../img/logo.png')} // substitua por sua imagem real
+                    style={styles.profileImage}
+                />
+                <Text style={styles.nome}>João Silva</Text>
+                <Text style={styles.email}>joao.silva@email.com</Text>
+            </View>
+
+            {/* Botão */}
+            <Pressable style={styles.button} onPress={() => navigation.navigate('Login')}>
+                <Text style={styles.buttonText}>Sair</Text>
             </Pressable>
         </View>
     );
@@ -16,57 +27,64 @@ export default function Perfil({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'space-evenly',
+        backgroundColor: '#F5F5F5',
         alignItems: 'center',
-        backgroundColor: 'rgb(100, 3, 19)',
-        padding: 20,
+        paddingTop: 0,
     },
-    text_titulo: {
-        fontSize: 50,
-        fontWeight: 'bold',
+    header: {
+        width: '100%',
+        paddingVertical: 40,
+        borderBottomLeftRadius: 30,
+        borderBottomRightRadius: 30,
+        alignItems: 'center',
+        backgroundColor: '#1289E7',
+    },
+    headerText: {
         color: 'white',
-        textAlign: 'center',
+        fontSize: 32,
+        fontWeight: 'bold',
     },
     card: {
         backgroundColor: 'white',
         borderRadius: 20,
-        maxWidth: 350,
+        width: '85%',
         alignItems: 'center',
-        shadowColor: 'black',
-        boxShadow: '0px 0px 8px white',
-        elevation: 5,
-        borderWidth: 1,
-        borderColor: 'white',
+        padding: 20,
+        marginTop: 40,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 6,
+        elevation: 6,
     },
-    text_subtitulo: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: 'white',
-        textAlign: 'center',
-        backgroundColor: 'rgb(100, 3, 19)',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        padding: 15,
-        paddingHorizontal: 55,
+    profileImage: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        marginBottom: 15,
+        borderWidth: 2,
+        borderColor: '#0F4C81',
     },
-    text_paragrafo: {
-        fontSize: 15,
+    nome: {
+        fontSize: 24,
         fontWeight: 'bold',
-        color: 'rgb(100, 3, 19)',
-        textAlign: 'center',
-        padding: 25
+        color: '#0F4C81',
+        marginBottom: 5,
+    },
+    email: {
+        fontSize: 16,
+        color: 'gray',
     },
     button: {
+        backgroundColor: '#2DAF69',
         padding: 15,
-        paddingHorizontal: 100,
-        borderRadius: 20,
-        backgroundColor: 'white',
-        alignItems: 'center',
-        marginTop: 15,
+        paddingHorizontal: 80,
+        borderRadius: 25,
+        marginTop: 50,
     },
     buttonText: {
-        fontSize: 15,
+        color: 'white',
         fontWeight: 'bold',
-        color: 'rgb(100, 3, 19)',
+        fontSize: 16,
     },
 });

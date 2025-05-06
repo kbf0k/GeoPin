@@ -17,7 +17,7 @@ export default function Login({ navigation }) {
         const auth = getAuth(app);
         signInWithEmailAndPassword(auth, email, password)
             .then(() => {
-                navigation.navigate('Inicio');
+                navigation.navigate('MainTabs', { screen: 'Inicio' })
             })
             .catch((error) => {
                 console.error(error);
@@ -31,7 +31,7 @@ export default function Login({ navigation }) {
     });
 
     return (
-        <LinearGradient colors={['#4a90e2', '#ff8c00', '#00b5b8']}
+        <LinearGradient colors={['#1289E7', '#2DAF69', '#00b5b8']}
             start={{ x: 0, y: 0 }}
             end={{ x: 180, y: 0 }} style={styles.container} >
             <BlurView intensity={55} tint="regular" style={styles.login_container}>
@@ -53,11 +53,6 @@ export default function Login({ navigation }) {
                 <TouchableOpacity onPress={Login} style={styles.botao}>
                     <Text style={styles.textoBotao}>Entrar</Text>
                 </TouchableOpacity>
-
-                <View style={styles.criar_conta}>
-                    <Text style={styles.textoConta}>Não tem uma conta?</Text>
-                    <TouchableOpacity style={styles.Conta} onPress={() => navigation.navigate('Cadastro')}>Criar Conta</TouchableOpacity>
-                </View>
 
                 <AwesomeAlert
                     show={showAlert}
@@ -120,6 +115,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         overflow: 'hidden',
         alignItems: 'center',
+        borderRadius: 20
     },
 
     logo: {
@@ -127,6 +123,7 @@ const styles = StyleSheet.create({
         height: 140,
         resizeMode: 'contain',
         marginBottom: 10,
+        borderRadius: 50
     },
 
     titulo: {

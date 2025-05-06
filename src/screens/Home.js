@@ -5,10 +5,6 @@ export default function Inicio({ navigation }) {
     return (
         <View style={styles.container}>
             <Text style={styles.text_titulo}>Home</Text>
-
-            <Pressable style={styles.button} onPress={() => navigation.navigate('Grace Hopper')}>
-                <Text style={styles.buttonText}>Saiba Mais</Text>
-            </Pressable>
         </View>
     );
 }

@@ -119,8 +119,8 @@ const styles = StyleSheet.create({
     },
 
     logo: {
-        width: 250,
-        height: 140,
+        width: 300,
+        height: 120,
         resizeMode: 'contain',
         marginBottom: 10,
         borderRadius: 50

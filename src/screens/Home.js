@@ -1,10 +1,20 @@
 import React from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Dimensions } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Inicio({ navigation }) {
     return (
         <View style={styles.container}>
-            <Text style={styles.text_titulo}>Home</Text>
+
+            {/* Local onde o mapa será renderizado futuramente */}
+            <View style={styles.mapPlaceholder}>
+                <Text style={styles.mapText}>[ MAPA AQUI ]</Text>
+            </View>
+
+            {/* Botão de ação */}
+            <Pressable style={styles.button} onPress={() => navigation.navigate('UltimoDestino')}>
+                <Text style={styles.buttonText}>Ver Último Destino</Text>
+            </Pressable>
         </View>
     );
 }
@@ -12,57 +22,47 @@ export default function Inicio({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'space-evenly',
+        backgroundColor: '#F5F5F5',
+    },
+    header: {
+        paddingVertical: 50,
+        paddingHorizontal: 25,
+        borderBottomLeftRadius: 30,
+        borderBottomRightRadius: 30,
         alignItems: 'center',
-        backgroundColor: 'rgb(100, 3, 19)',
-        padding: 20,
     },
-    text_titulo: {
-        fontSize: 50,
-        fontWeight: 'bold',
+    headerText: {
+        fontSize: 28,
         color: 'white',
-        textAlign: 'center',
+        fontWeight: 'bold',
     },
-    card: {
-        backgroundColor: 'white',
+    mapPlaceholder: {
+        width: Dimensions.get('window').width * 0.9,
+        height: 300,
+        backgroundColor: '#E0E0E0',
         borderRadius: 20,
-        maxWidth: 350,
+        alignSelf: 'center',
+        marginTop: 40,
         alignItems: 'center',
-        shadowColor: 'black',
-        boxShadow: '0px 0px 8px white',
-        elevation: 5,
+        justifyContent: 'center',
         borderWidth: 1,
-        borderColor: 'white',
+        borderColor: '#1289E7',
     },
-    text_subtitulo: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: 'white',
-        textAlign: 'center',
-        backgroundColor: 'rgb(100, 3, 19)',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        padding: 15,
-        paddingHorizontal: 55,
-    },
-    text_paragrafo: {
-        fontSize: 15,
-        fontWeight: 'bold',
-        color: 'rgb(100, 3, 19)',
-        textAlign: 'center',
-        padding: 25
+    mapText: {
+        color: '#888',
+        fontSize: 16,
     },
     button: {
+        backgroundColor: '#2DAF69',
         padding: 15,
-        paddingHorizontal: 100,
-        borderRadius: 20,
-        backgroundColor: 'white',
-        alignItems: 'center',
-        marginTop: 15,
+        paddingHorizontal: 40,
+        borderRadius: 25,
+        alignSelf: 'center',
+        marginTop: 40,
     },
     buttonText: {
-        fontSize: 15,
+        color: 'white',
         fontWeight: 'bold',
-        color: 'rgb(100, 3, 19)',
+        fontSize: 16,
     },
 });

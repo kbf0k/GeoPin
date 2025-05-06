@@ -24,11 +24,6 @@ function CustomHeader({ navigation }) {
         source={require('./src/img/logo.png')}
         resizeMode="contain"
       />
-      <View style={styles.menuIcon}>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <FontAwesome style={styles.icone} name="sign-out" size={30} color="white" />
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }
@@ -97,8 +92,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     backgroundColor: '#00b5b8',
     alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderBottomLeftRadius: 20,
@@ -110,8 +104,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   logo_nav: {
-    width: 120,
-    height: 50,
+    width: 200,
+    height: 70,
   },
   menuIcon: {
     flexDirection: 'row',

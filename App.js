@@ -2,10 +2,9 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
-import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 
-import Login from './src/screens/Login';
+import RoutesScreen from './src/screens/RoutesScreen';
 import Inicio from './src/screens/Home';
 import Perfil from './src/screens/Perfil';
 import UltimoDestino from './src/screens/UltimoDestino';
@@ -40,7 +39,7 @@ function MainTabs() {
           borderTopWidth: 0,
           height: 60,
           borderTopLeftRadius: 20,
-          borderTopRightRadius: 20
+          borderTopRightRadius: 20,
         },
         tabBarActiveTintColor: '#fff',
         tabBarInactiveTintColor: 'rgba(255,255,255,0.5)',
@@ -81,8 +80,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={Login} />
+        {/* Agora MainTabs será a primeira tela exibida */}
         <Stack.Screen name="MainTabs" component={MainTabs} />
+        <Stack.Screen name="RoutesScreen" component={RoutesScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -106,18 +106,5 @@ const styles = StyleSheet.create({
   logo_nav: {
     width: 200,
     height: 70,
-  },
-  menuIcon: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 20,
-  },
-  icone: {
-    marginHorizontal: 5,
-  },
-  direct: {
-    color: '#fff',
-    fontFamily: 'Poppins-Regular',
-    fontSize: 12,
   },
 });

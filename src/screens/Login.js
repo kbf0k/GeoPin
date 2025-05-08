@@ -5,24 +5,18 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
-import app from '../../FirebaseConfig'
-
 
 export default function Login({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setSenha] = useState('');
-    const [showAlert, setshowAlert] = useState(false)
+    const [showAlert, setshowAlert] = useState(false);
 
     const Login = () => {
-        const auth = getAuth(app);
-        signInWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                navigation.navigate('MainTabs', { screen: 'Inicio' })
-            })
-            .catch((error) => {
-                console.error(error);
-                setshowAlert(true)
-            });
+        if (email === 'sesi@sesi.com' || password === '123qwe') {
+            setEmail(email)
+            setSenha(password)
+            navigation.navigate('MainTabs', { screen: 'Inicio' })
+        }
     }
 
     let [fontsLoaded] = useFonts({
@@ -101,7 +95,6 @@ export default function Login({ navigation }) {
         </LinearGradient >
     )
 }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
